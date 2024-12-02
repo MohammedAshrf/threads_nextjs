@@ -7,17 +7,19 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { Textarea } from "../ui/textarea";
+import { isBase64Image } from "@/lib/utils";
+import { useUploadThing } from "@/lib/uploadthing";
+import { updateUser } from "@/lib/actions/user.actions";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   user: {
@@ -33,9 +35,14 @@ interface Props {
 
 export default function AccountProfile({ user, btnTitle }: Props) {
   const [files, setFiles] = useState<File[]>([]);
+  const { startUpload } = useUploadThing("media");
+  const router = useRouter();
+  const pathname = usePathname();
+
   const form = useForm({
     resolver: zodResolver(UserValidation),
     defaultValues: {
+      id: user?.id || "",
       profile_photo: user?.image || "",
       name: user?.name || "",
       username: user?.username || "",
@@ -43,7 +50,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
     },
   });
 
-  console.log(user);
+  // console.log(user);
 
   function handleImage(
     e: ChangeEvent<HTMLInputElement>,
@@ -53,7 +60,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
 
     const fileReader = new FileReader();
 
-    if (e.target.files && e.target.files.length > 1) {
+    if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
 
       setFiles(Array.from(e.target.files));
@@ -71,10 +78,37 @@ export default function AccountProfile({ user, btnTitle }: Props) {
   }
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof UserValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof UserValidation>) {
+    // console.log(values);
+
+    const blob = values.profile_photo;
+
+    const hasImageChanged = isBase64Image(blob);
+
+    if (hasImageChanged) {
+      const imgRes = await startUpload(files);
+
+      if (imgRes && imgRes[0].url) {
+        // values.profile_photo = imgRes[0].fileUrl;
+        values.profile_photo = imgRes[0].url;
+      }
+    }
+
+    // ===> Update user profile
+    await updateUser({
+      userId: values.id,
+      username: values.username,
+      name: values.name,
+      bio: values.bio,
+      image: values.profile_photo,
+      path: pathname,
+    });
+
+    if (pathname === "/profile/edit") {
+      router.back();
+    } else {
+      router.push("/");
+    }
   }
 
   return (
@@ -83,6 +117,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col justify-start gap-10"
       >
+        {/* {/*  */}
         <FormField
           control={form.control}
           name="profile_photo"
@@ -113,13 +148,14 @@ export default function AccountProfile({ user, btnTitle }: Props) {
                   type="file"
                   accept="image/*"
                   placeholder="Upload a photo"
-                  className="account-form_image-input"
+                  className="account-form_image-input cursor-pointer"
                   onChange={(e) => handleImage(e, field.onChange)}
                 />
               </FormControl>
             </FormItem>
           )}
         />
+        {/* */}
 
         <FormField
           control={form.control}

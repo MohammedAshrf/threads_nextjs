@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   experimental: {
     // serverActions: true,
-    serverComponentsExternalPackages: ["mongoose"],
+    // serverComponentsExternalPackages: ["mongoose"],
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
