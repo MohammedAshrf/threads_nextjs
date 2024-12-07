@@ -31,7 +31,7 @@ export async function updateUser({
         name,
         bio,
         image,
-        onboarder: true,
+        onboarding: true,
       },
       { upsert: true }
     );
@@ -42,5 +42,21 @@ export async function updateUser({
   } catch (err: any) {
     // console.log(err);
     throw new Error("error while updating the user data " + err.message);
+  }
+}
+
+export async function fetchUser(userId: string) {
+  connectToDB();
+
+  try {
+    // Query by string ID
+    return await User.findOne({ id: userId });
+    //   .populate({
+    //   path: "communities",
+    //   model: Community,
+    // });
+  } catch (err) {
+    // console.log(err);
+    throw new Error("error while fetching user " + err);
   }
 }
