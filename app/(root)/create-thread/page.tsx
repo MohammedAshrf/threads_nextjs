@@ -12,7 +12,6 @@ export default async function page() {
   if (!user) return null;
 
   const userInfo = await fetchUser(user.id);
-  //   console.log(userInfo);
 
   if (!userInfo?.onboarding) redirect("onboarding");
 
@@ -20,7 +19,7 @@ export default async function page() {
     <div>
       <h1 className="head-text">create thread</h1>
 
-      <PostThread userId={userInfo._id} />
+      <PostThread userId={userInfo._id.toString()} />
     </div>
   );
 }

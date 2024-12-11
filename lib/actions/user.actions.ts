@@ -46,9 +46,9 @@ export async function updateUser({
 }
 
 export async function fetchUser(userId: string) {
-  connectToDB();
-
   try {
+    connectToDB();
+
     // Query by string ID
     return await User.findOne({ id: userId });
     //   .populate({
