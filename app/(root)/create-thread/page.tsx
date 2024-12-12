@@ -7,8 +7,6 @@ export default async function page() {
   const user = await currentUser();
   //   console.log(user.id);
 
-  // => test:
-  // -- What'll happen if you commented the following line.s
   if (!user) return null;
 
   const userInfo = await fetchUser(user.id);

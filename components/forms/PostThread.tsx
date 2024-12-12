@@ -13,7 +13,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "../ui/textarea";
-import { updateUser } from "@/lib/actions/user.actions";
 import { usePathname, useRouter } from "next/navigation";
 import { ThreadValidation } from "@/lib/validations/thread";
 import { createThread } from "@/lib/actions/thread.actions";
