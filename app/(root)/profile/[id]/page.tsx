@@ -8,15 +8,21 @@ import { profileTabs } from "@/constants";
 import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 
-export default async function page({ params }: { params: { id: string } }) {
-  console.log(params.id);
+export default async function page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  // console.log(id);
+
+  const { id } = await params;
 
   const user = await currentUser();
   //   console.log(user.id);
 
   if (!user) return null;
 
-  const userInfo = await fetchUser(params.id);
+  const userInfo = await fetchUser(id);
   // console.log(userInfo);
 
   if (!userInfo?.onboarding) redirect("onboarding");

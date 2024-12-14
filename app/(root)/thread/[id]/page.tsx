@@ -5,16 +5,22 @@ import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-export default async function page({ params }: { params: { id: string } }) {
-  if (!params.id) return null;
+export default async function page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  if (!id) return null;
 
   const user = await currentUser();
   if (!user) return null;
 
   const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarding) redirect(params.id);
+  if (!userInfo?.onboarding) redirect(id);
 
-  const thread = await fetchThreadById(params.id);
+  const thread = await fetchThreadById(id);
 
   return (
     <section className="relative">
