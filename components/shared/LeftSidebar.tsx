@@ -10,7 +10,7 @@ export default function LeftSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const userId = useUser().user?.id;
-  console.log(userId);
+  // console.log(userId);
 
   //   console.log(pathname);
 
@@ -22,7 +22,9 @@ export default function LeftSidebar() {
             (pathname.includes(link.route) && link.route.length > 1) ||
             pathname === link.route;
 
-          if (link.route === "/profile") link.route = `${link.route}/${userId}`;
+          if (link.route === "/profile" && userId) {
+            link.route = `${link.route}/${userId}`;
+          }
 
           return (
             <Link

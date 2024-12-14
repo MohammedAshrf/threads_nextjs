@@ -9,6 +9,8 @@ import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 
 export default async function page({ params }: { params: { id: string } }) {
+  console.log(params.id);
+
   const user = await currentUser();
   //   console.log(user.id);
 

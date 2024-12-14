@@ -20,7 +20,7 @@ export default function UserCard({
   imgUrl,
   personType,
 }: Props) {
-  //   const router = useRouter();
+  const router = useRouter();
 
   //   const isCommunity = personType === "Community";
 
@@ -42,18 +42,18 @@ export default function UserCard({
         </div>
       </div>
 
-      {/* <Button
+      <Button
         className="user-card_btn"
         onClick={() => {
-          if (isCommunity) {
-            router.push(`/communities/${id}`);
-          } else {
-            router.push(`/profile/${id}`);
-          }
+          // if (isCommunity) {
+          // router.push(`/communities/${id}`);
+          // } else {
+          router.push(`/profile/${id}`);
+          // }
         }}
       >
         View
-      </Button> */}
+      </Button>
     </article>
   );
 }

@@ -141,3 +141,30 @@ export async function fetchUsers({
     throw new Error("error while fetching users " + err.message);
   }
 }
+
+export async function getActivity(userId: string) {
+  try {
+    connectToDB();
+
+    const userThreads = await Thread.find({ author: userId });
+
+    const childThreadIds = userThreads.reduce((acc, userThread) => {
+      return acc.concat(userThread.children);
+    }, []);
+
+    const query = {
+      _id: { $in: childThreadIds },
+      author: { $ne: userId },
+    };
+
+    const replies = await Thread.find(query).populate({
+      path: "author",
+      model: User,
+      select: "_id name image",
+    });
+
+    return replies;
+  } catch (err) {
+    throw new Error("error while fetching activities " + err);
+  }
+}
