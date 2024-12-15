@@ -197,11 +197,11 @@ export async function fetchThreads(pageNumber = 1, pageSize = 20) {
     parentId: { $in: [null, undefined] },
   }); // Get the total count of posts
 
-  const posts = await postsQuery.exec();
+  const threads = await postsQuery.exec();
 
-  const isNext = totalPostsCount > skipAmount + posts.length;
+  const isNext = totalPostsCount > skipAmount + threads.length;
 
-  return { posts, isNext };
+  return { threads, isNext };
 }
 
 interface Params {
