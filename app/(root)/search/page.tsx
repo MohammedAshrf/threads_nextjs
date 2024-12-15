@@ -1,12 +1,11 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 
-// import UserCard from "@/components/cards/UserCard";
-// import Searchbar from "@/components/shared/Searchbar";
-// import Pagination from "@/components/shared/Pagination";
+import UserCard from "@/components/cards/UserCard";
+import Searchbar from "@/components/shared/Searchbar";
+import Pagination from "@/components/shared/Pagination";
 
 import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
-import UserCard from "@/components/cards/UserCard";
 
 export default async function Page({
   searchParams,
@@ -17,23 +16,23 @@ export default async function Page({
   // console.log(user);
   if (!user) return null;
 
+  let getSearchParams = await searchParams;
+
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarding) redirect("/onboarding");
 
   const result = await fetchUsers({
     userId: user.id,
-    // searchString: searchParams.q,
-    searchString: "",
-    // pageNumber: searchParams?.page ? +searchParams.page : 1,
-    pageNumber: 1,
+    searchString: getSearchParams.q,
+    // searchString: "",
+    pageNumber: getSearchParams?.page ? +getSearchParams.page : 1,
+    // pageNumber: 1,
     pageSize: 25,
   });
 
   return (
     <section>
-      <h1 className="head-text mb-10">Search</h1>
-
-      {/* <Searchbar routeType="search" /> */}
+      <Searchbar routeType="search" />
 
       <div className="mt-14 flex flex-col gap-9">
         {result.users.length === 0 ? (
@@ -54,11 +53,11 @@ export default async function Page({
         )}
       </div>
 
-      {/* <Pagination
+      <Pagination
         path="search"
-        pageNumber={searchParams?.page ? +searchParams.page : 1}
+        pageNumber={getSearchParams?.page ? +getSearchParams.page : 1}
         isNext={result.isNext}
-      /> */}
+      />
     </section>
   );
 }

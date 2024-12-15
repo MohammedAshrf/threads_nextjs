@@ -7,6 +7,7 @@ interface Params {
   username: string;
   imageUrl: string;
   bio: string;
+  type?: "User" | "Community";
 }
 
 export default function ProfileHeader({
@@ -16,6 +17,7 @@ export default function ProfileHeader({
   username,
   imageUrl,
   bio,
+  type,
 }: Params) {
   return (
     <div>
