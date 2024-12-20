@@ -41,7 +41,7 @@ export default function ThreadCard({
   comments,
   isComment,
 }: Props) {
-  console.log(community);
+  // console.log(community);
 
   return (
     <article

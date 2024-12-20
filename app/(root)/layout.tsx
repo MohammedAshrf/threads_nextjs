@@ -6,6 +6,8 @@ import Topbar from "@/components/shared/Topbar";
 import LeftSidebar from "@/components/shared/LeftSidebar";
 import RightSidebar from "@/components/shared/RightSidebar";
 import Bottombar from "@/components/shared/Bottombar";
+import { useRouter } from "next/navigation";
+import LoadingBar from "@/components/shared/useLoading";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -40,6 +42,7 @@ export default function RootLayout({
             <LeftSidebar />
 
             <section className="main-container">
+              <LoadingBar /> {/* Loading logic */}
               <div className="w-full max-w-4xl">{children}</div>
             </section>
 
