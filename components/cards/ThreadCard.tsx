@@ -78,32 +78,32 @@ export default function ThreadCard({
                 <Image
                   src={"/assets/heart-gray.svg"}
                   alt="heart"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer object-contain"
+                  width={28}
+                  height={28}
+                  className="cursor-pointer object-contain p-0.5 rounded-xl hover:bg-primary-400"
                 />
                 <Link href={`/thread/${id}`}>
                   <Image
                     src={"/assets/reply.svg"}
                     alt="reply"
-                    width={24}
-                    height={24}
-                    className="cursor-pointer object-contain"
+                    width={28}
+                    height={28}
+                    className="cursor-pointer object-contain p-0.5 rounded-xl hover:bg-primary-400"
                   />
                 </Link>
                 <Image
                   src={"/assets/share.svg"}
                   alt="share"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer object-contain"
+                  width={28}
+                  height={28}
+                  className="cursor-pointer object-contain p-0.5 rounded-xl hover:bg-primary-400"
                 />
                 <Image
                   src={"/assets/repost.svg"}
                   alt="repost"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer object-contain"
+                  width={28}
+                  height={28}
+                  className="cursor-pointer object-contain p-0.5 rounded-xl hover:bg-primary-400"
                 />
               </div>
 

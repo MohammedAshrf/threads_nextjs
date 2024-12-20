@@ -30,7 +30,9 @@ export default function LeftSidebar() {
             <Link
               key={link.label}
               href={link.route}
-              className={`leftsidebar_link ${isActive && "bg-primary-500"}`}
+              className={`leftsidebar_link hover:bg-se ${
+                isActive && "bg-primary-600"
+              }`}
             >
               <Image
                 src={link.imgURL}

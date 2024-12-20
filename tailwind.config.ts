@@ -180,7 +180,9 @@ export default {
 
     extend: {
       colors: {
+        "primary-400": "rgb(160 152 255)",
         "primary-500": "#877EFF",
+        "primary-600": "rgb(113 102 253)",
         "secondary-500": "#FFB620",
         blue: "#0095F6",
         "logout-btn": "#FF5A5A",
