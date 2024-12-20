@@ -206,6 +206,7 @@ export async function fetchThreads(pageNumber = 1, pageSize = 20) {
 
 interface Params {
   text: string;
+  image: string;
   author: string;
   communityId: string | null;
   path: string;
@@ -213,6 +214,7 @@ interface Params {
 
 export async function createThread({
   text,
+  image,
   author,
   communityId,
   path,
@@ -227,6 +229,7 @@ export async function createThread({
 
     const createdThread = await Thread.create({
       text,
+      image,
       author,
       community: communityIdObject, // Assign communityId if provided, or leave it null for personal account
     });

@@ -14,7 +14,7 @@ export default function Searchbar({ routeType }: Props) {
   const router = useRouter();
   const [search, setSearch] = useState("");
 
-  console.log(routeType);
+  // console.log(routeType);
 
   // query after 0.3s of no input
   useEffect(() => {

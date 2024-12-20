@@ -6,11 +6,11 @@
 -> Done:
 
 - loadind: for the UX show that it's pending/downloading while making a request or clicking on a button or changing between pages.
+- hover: change color when hover on link in the leftsidebar component, and thread card icons.
+- don't forget the right bar: just put the communities and the users there as you did in the communities and seach pages.
 
 -> Working on:
-1- hover: change color when hover on link in the leftsidebar component, and thread card icons.
-2- styling: change and update the bio tyle.
-3- don't forget the right bar: just put the communities and the users there as you did in the communities and seach pages.
+1- styling: change and update the bio tyle.
 
 ==> Features:
 1- Possibility of uploadding image in the thread.

@@ -13,7 +13,7 @@ export default async function Page() {
   if (!userInfo?.onboarding) redirect("/onboarding");
 
   const activity = await getActivity(userInfo._id);
-  console.log(activity);
+  // console.log(activity);
 
   return (
     <>

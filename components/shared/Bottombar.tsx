@@ -21,7 +21,7 @@ export default function Bottombar() {
             <Link
               key={link.label}
               href={link.route}
-              className={`bottombar_link ${isActive && "bg-primary-500"}`}
+              className={`bottombar_link ${isActive && "bg-primary-600"}`}
             >
               <Image
                 src={link.imgURL}

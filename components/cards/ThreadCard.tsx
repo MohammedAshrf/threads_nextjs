@@ -7,6 +7,7 @@ interface Props {
   currentUserId: string;
   parentId: string | null;
   content: string;
+  image: string;
   author: {
     name: string;
     image: string;
@@ -35,6 +36,7 @@ export default function ThreadCard({
   currentUserId,
   parentId,
   content,
+  image,
   author,
   community,
   createdAt,
@@ -72,6 +74,24 @@ export default function ThreadCard({
             </Link>
 
             <p className="mt-2 text-small-regular text-light-2">{content}</p>
+
+            {/* {image && (
+              <div className="w-[400px] h-[200px] relative mt-5">
+                <Image src={image} alt="thread image" fill />
+              </div>
+            )} */}
+
+            {image && (
+              <div className="relative w-[400px] pb-[50%] mt-5 overflow-hidden">
+                <Image
+                  src={image}
+                  alt="thread image"
+                  layout="fill"
+                  objectFit="contain"
+                  className="absolute inset-0 w-full h-full"
+                />
+              </div>
+            )}
 
             <div className="mt-5 flex-flex-col gap-3">
               <div className="flex gap-3.5">

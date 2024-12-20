@@ -71,7 +71,7 @@
   }
 
   .bottombar_link {
-    @apply relative flex flex-col items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
+    @apply relative flex flex-col items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5 hover:bg-primary-500;
   }
 
   .leftsidebar {
@@ -144,11 +144,11 @@
 }
 
 .account-form_image-input {
-  @apply cursor-pointer border-none bg-transparent outline-none file:text-blue !important;
+  @apply cursor-pointer border-none bg-transparent outline-none file:text-blue mt-0 !important;
 }
 
 .account-form_input {
-  @apply border border-dark-4 bg-dark-3 text-light-1 !important;
+  @apply min-h-[150px] border border-dark-4 bg-dark-3 text-light-1 !important;
 }
 
 /* Comment Form */
